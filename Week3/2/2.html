@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Đăng ký</title>
+    <script
+      src="https://kit.fontawesome.com/170d7e071b.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    .round-checkbox {
+      display: inline-block;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      border: 2px solid #999;
+      cursor: pointer;
+    }
+
+   
+  </style>
+  <body>
+    <div
+      style="
+        width: 460px;
+        height: 680px;
+        box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 10%;
+      "
+    >
+      <div style="margin: 0 24px; position: relative; padding: 10px 0">
+        <h1>Đăng ký</h1>
+        <p style="color: rgb(156, 156, 156); padding: 0 0 5px 0">
+          Nhanh chóng và dễ dàng
+        </p>
+        <div style="position: absolute; top: 10px; right: -15px; scale: 2">
+          <i class="fa-solid fa-xmark"></i>
+        </div>
+      </div>
+      <div
+        style="height: 1px; width: 100%; background-color: rgb(175, 175, 175)"
+      ></div>
+
+      <div style="margin: 20px 24px">
+        <div
+          style="display: flex; justify-content: space-between; margin: 12px 0"
+        >
+          <input
+            type="text"
+            placeholder="Họ"
+            style="
+              background-color: rgb(231, 231, 231);
+              padding: 12px;
+              outline: none;
+              border: none;
+              border-radius: 5px;
+            "
+          />
+          <input
+            type="text"
+            placeholder="Tên"
+            style="
+              background-color: rgb(231, 231, 231);
+              padding: 12px;
+              outline: none;
+              border: none;
+              border-radius: 5px;
+            "
+          />
+        </div>
+        <input
+          type="email number"
+          placeholder="Số di động hoặc email"
+          style="
+            background-color: rgb(231, 231, 231);
+            padding: 12px;
+            outline: none;
+            border: none;
+            border-radius: 5px;
+            width: 100%;
+          "
+        />
+        <input
+          type="password"
+          placeholder="Mật khẩu mới"
+          style="
+            margin: 12px 00;
+            background-color: rgb(231, 231, 231);
+            padding: 12px;
+            outline: none;
+            border: none;
+            border-radius: 5px;
+            width: 100%;
+          "
+        />
+        <div>
+          <p style="color: rgb(156, 156, 156); font-size: 12px">Ngày sinh</p>
+          <div
+            style="
+              display: flex;
+              margin: 0 -8px;
+              justify-content: space-between;
+            "
+          >
+            <select
+              id="birthDay"
+              name="birthDay"
+              style="
+                background-color: rgb(255, 255, 255);
+                padding: 12px;
+                outline: none;
+                border: 1px solid rgb(219, 219, 219);
+                border-radius: 5px;
+                width: 100%;
+                margin: 0 8px;
+              "
+            >
+              <script>
+                const birthDaySelect = document.getElementById("birthDay");
+
+                for (let i = 1; i <= 31; i++) {
+                  const option = document.createElement("option");
+                  const formattedDay = i < 10 ? "0" + i : "" + i; // Định dạng số để giữ nguyên 2 chữ số
+                  option.value = formattedDay;
+                  option.text = i;
+                  birthDaySelect.appendChild(option);
+                }
+              </script>
+            </select>
+            <select
+              style="
+                background-color: rgb(255, 255, 255);
+                padding: 12px;
+                outline: none;
+                border: 1px solid rgb(219, 219, 219);
+                border-radius: 5px;
+                margin: 0 8px;
+                width: 100%;
+              "
+            >
+              <option value="01">Tháng 1</option>
+              <option value="02">Tháng 2</option>
+              <option value="03">Tháng 3</option>
+              <option value="04">Tháng 4</option>
+              <option value="05">Tháng 5</option>
+              <option value="06">Tháng 6</option>
+              <option value="07">Tháng 7</option>
+              <option value="08">Tháng 8</option>
+              <option value="09">Tháng 9</option>
+              <option value="10">Tháng 10</option>
+              <option value="11">Tháng 11</option>
+              <option value="12">Tháng 12</option>
+            </select>
+
+            <select
+              style="
+                background-color: rgb(255, 255, 255);
+                padding: 12px;
+                outline: none;
+                border: 1px solid rgb(219, 219, 219);
+                border-radius: 5px;
+                margin: 0 8px;
+                width: 100%;
+              "
+            >
+              <script>
+                const currentYear = new Date().getFullYear();
+                for (
+                  let year = currentYear;
+                  year >= currentYear - 100;
+                  year--
+                ) {
+                  document.write(`<option value="${year}">${year}</option>`);
+                }
+              </script>
+            </select>
+          </div>
+        </div>
+        <div>
+          <p style="color: rgb(156, 156, 156); font-size: 12px">Ngày sinh</p>
+          <div
+            style="
+              display: flex;
+              margin: 0 -8px;
+              justify-content: space-between;
+            "
+          >
+            <label for="myCheckbox" class="round-checkbox"></label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
