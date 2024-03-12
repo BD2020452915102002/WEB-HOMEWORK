@@ -23,14 +23,20 @@
       border: 2px solid #999;
       cursor: pointer;
     }
-
-   
+    .button:hover {
+      background-color: rgb(107, 132, 154) !important;
+    }
+    .error {
+      border: 2px solid #ea0000 !important;
+    }
   </style>
   <body>
-    <div
+    <form
+      action
+      id="form"
       style="
         width: 460px;
-        height: 680px;
+        height: 600px;
         box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
         margin-left: auto;
         margin-right: auto;
@@ -55,6 +61,7 @@
           style="display: flex; justify-content: space-between; margin: 12px 0"
         >
           <input
+            id="surname"
             type="text"
             placeholder="Họ"
             style="
@@ -66,7 +73,8 @@
             "
           />
           <input
-            type="text"
+            type="name"
+            id="name"
             placeholder="Tên"
             style="
               background-color: rgb(231, 231, 231);
@@ -79,6 +87,7 @@
         </div>
         <input
           type="email number"
+          id="contact"
           placeholder="Số di động hoặc email"
           style="
             background-color: rgb(231, 231, 231);
@@ -91,6 +100,7 @@
         />
         <input
           type="password"
+          id="password"
           placeholder="Mật khẩu mới"
           style="
             margin: 12px 00;
@@ -186,7 +196,11 @@
           </div>
         </div>
         <div>
-          <p style="color: rgb(156, 156, 156); font-size: 12px">Ngày sinh</p>
+          <p
+            style="color: rgb(156, 156, 156); font-size: 12px; margin-top: 12px"
+          >
+            Giới tính
+          </p>
           <div
             style="
               display: flex;
@@ -194,10 +208,123 @@
               justify-content: space-between;
             "
           >
-            <label for="myCheckbox" class="round-checkbox"></label>
+            <label
+              style="
+                background-color: rgb(255, 255, 255);
+                padding: 12px;
+                outline: none;
+                border: 1px solid rgb(219, 219, 219);
+                border-radius: 5px;
+                width: 100%;
+                margin: 0 8px;
+              "
+            >
+              Nam
+              <input type="radio" name="gender" value="male" />
+            </label>
+
+            <label
+              style="
+                background-color: rgb(255, 255, 255);
+                padding: 12px;
+                outline: none;
+                border: 1px solid rgb(219, 219, 219);
+                border-radius: 5px;
+                width: 100%;
+                margin: 0 8px;
+              "
+              >Nữ
+              <input type="radio" name="gender" value="female" />
+            </label>
+            <label
+              style="
+                background-color: rgb(255, 255, 255);
+                padding: 12px;
+                outline: none;
+                border: 1px solid rgb(219, 219, 219);
+                border-radius: 5px;
+                width: 100%;
+                margin: 0 8px;
+              "
+              >Tùy chỉnh
+              <input type="radio" name="gender" value="custom " />
+            </label>
           </div>
         </div>
+        <p style="font-size: 12px; color: #999; margin-top: 12px">
+          Những người dùng dịch vụ của chúng tôi có thể đã tải thông tin liên hệ
+          của bạn lên Facebook.
+          <span style="color: dodgerblue">Tìm hiểu thêm.</span> <br />
+          <br />
+
+          Bằng cách nhấp vào Đăng ký, bạn đồng ý với
+          <span style="color: dodgerblue"
+            >Điều khoản, Chính sách quyền riêng tư và Chính sách cookie
+          </span>
+          của chúng tôi. Bạn có thể nhận được thông báo của chúng tôi qua SMS và
+          hủy nhận bất kỳ lúc nào.
+        </p>
       </div>
-    </div>
+      <input
+        class="button"
+        type="submit"
+        value="Đăng ký"
+        style="
+          height: 40px;
+          width: 200px;
+          margin-left: 50%;
+          transform: translateX(-50%);
+          background: #28863e;
+          outline: none;
+          border: none;
+          color: white;
+          font-weight: bold;
+          font-size: 20px;
+        "
+      />
+    </form>
   </body>
+  <script>
+    const form = document.querySelector("form");
+    const [surname, name, contact, password] = [
+      "surname",
+      "name",
+      "contact",
+      "password",
+    ].map((e) => document.getElementById(e));
+    const radioInputs = document.querySelectorAll(
+      'input[type="radio"][name="gender"]'
+    );
+
+    radioInputs.forEach(function (input) {
+      input.addEventListener("change", function () {
+        if (this.checked) {
+          radioInputs.forEach(function (otherInput) {
+            if (otherInput !== input) {
+              otherInput.disabled = true;
+            }
+          });
+        }
+      });
+    });
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      if (surname.value === "" || !/^[\p{L} ]+$/u.test(surname.value))
+        surname.classList.add("error");
+      else surname.classList.remove("error");
+      if (name.value === "" || !/^[\p{L} ]+$/u.test(name.value))
+        name.classList.add("error");
+      else name.classList.remove("error");
+      if (
+        contact.value === "" ||
+        (!/^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
+          contact.value
+        ) &&
+          !/^(\+84|0)\d{9}$/.test(contact.value))
+      )
+        contact.classList.add("error");
+      else contact.classList.remove("error");
+      if (password.value === "") password.classList.add("error");
+    });
+  </script>
 </html>
